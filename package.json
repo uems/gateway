@@ -1,0 +1,26 @@
+{
+  "name": "gateway",
+  "version": "0.0.0",
+  "description": "a gateway for the backend services",
+  "main": "Gulpfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/uems/gateway.git"
+  },
+  "author": "Felipe Mobus",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/uems/gateway/issues"
+  },
+  "homepage": "https://github.com/uems/gateway",
+  "devDependencies": {
+    "gulp-mocha": "^0.4.1",
+    "gulp": "^3.5.6"
+  }
+}

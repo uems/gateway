@@ -1,4 +1,12 @@
 app.get('/search/:q', function(req, res) {
+  service.search(query).model(PersonStub).then(function(result) {
+    res.write(result.toJson());
+  });
+  //
+  service.fetch(entry).model(Person).then(function(result) {
+    return result
+  });
+  /*
   var services = BackendServices.allFor('people-search');
 
   var resultPromises = services.map(function(svc) { return svc.search(query); });
@@ -12,5 +20,5 @@ app.get('/search/:q', function(req, res) {
     });
 
     res.write(response.toJson());
-  });
+  });*/
 });

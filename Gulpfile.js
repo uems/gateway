@@ -6,7 +6,13 @@ var testFiles = [
   'spec/**/*.spec.js'
 ];
 
-gulp.task('default', function () {
-    gulp.src(testFiles)
-        .pipe(mocha({reporter: 'nyan'}));
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
+
+gulp.task("default", function() {
+  return gulp.src(testFiles)
+    .pipe(mocha({ reporter: "spec" })
+    .on("error", handleError));
 });

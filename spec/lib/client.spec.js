@@ -11,10 +11,11 @@ describe("Client", function() {
   });
 
   describe("search", function() {
-    it("promises multiple wrapped entries", function() {
-      var result = subject.search();
+    it("promises multiple wrapped entries", function(callback) {
+      subject.search().then(function(result) {
+        expect(result).toEqual([]);
+      }).done(callback,callback);
 
-      return expect(result).to.eventually.be([]);
     });
   });
 

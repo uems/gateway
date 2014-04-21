@@ -1,21 +1,21 @@
+require('../spec_helper');
 var expect = require('expect');
+var clientLib = require('../../lib/client');
 
-var client = require('../../lib/client');
 
-describe("Client", function() {
 
+describe("RestClient", function() {
   var subject;
+  var endpoint = 'http://localhost:9999';
 
   beforeEach(function() {
-    subject = client.build();
+    subject = clientLib.build(endpoint);
   });
 
-  describe("search", function() {
-    it("promises multiple wrapped entries", function(callback) {
-      subject.search().then(function(result) {
-        expect(result).toEqual([]);
-      }).done(callback,callback);
-
+  describe("get", function() {
+    it("by entity and id", function(ƒ) {
+      subject.get('person', 123).then(function(result) {
+      }).µ(ƒ);
     });
   });
 

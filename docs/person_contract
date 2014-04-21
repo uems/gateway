@@ -31,7 +31,7 @@
   ]
 }
 
-// GET greve://people/search/felipe
+// GET greve://people?query=felipe
 
 {
   query: 'felipe',
@@ -43,7 +43,7 @@
   ]
 }
 
-// GET greve://people/search/astrogildo@gmail.com
+// GET greve://people?query=astrogildo@gmail.com
 {
   query: 'astrogildo@gmail.com',
   total: 0,

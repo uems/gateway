@@ -29,6 +29,7 @@
     "expect": "^0.1.1",
     "mocha": "^1.18.2",
     "mocha-as-promised": "^2.0.0",
-    "gulp-jasmine": "^0.2.0"
+    "gulp-jasmine": "^0.2.0",
+    "request": "^2.34.0"
   }
 }

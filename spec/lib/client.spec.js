@@ -10,9 +10,17 @@ describe("Generic Rest Client", function() {
   var nockScope;
   var endpoint = 'http://localhost:9999';
 
+  var leela = '{ "id": 123, "name": "Turanga Leela" }';
+  var fry   = '{ "id": 456, "name": "Phillip J. Fry" }';
+  var searchFry = '{ "query": "Fry", "total": 1, "items": [ { "link": "http://localhost:9999/people/456", "name": "Phillip J. Fry" } ] }';
+
   beforeEach(function() {
     subject = clientLib.build(endpoint);
     nockScope = nock(endpoint);
+
+    nockScope.get('/people/123').reply(200, leela)
+             .get('/people/456').reply(200, fry)
+             .get('/people?query=Fry').reply(200, searchFry);
   });
 
   describe("available entities", function() {
@@ -23,13 +31,18 @@ describe("Generic Rest Client", function() {
     });
   });
 
-  describe("get", function() {
-    var leela = '{ "id": 123, "name": "Turanga Leela" }';
-
-    beforeEach(function() {
-      nockScope.get('/people/123').reply(200, leela);
+  describe("search", function() {
+    it("by free-form search", function(ƒ) {
+      subject.search('people', 'Fry').then(function(result) {
+        expect(result.query).toEqual('Fry');
+        expect(result.total).toEqual(1);
+        expect(result.items[0].name).toEqual('Phillip J. Fry');
+        // should it auto-fetch results?
+      }).µ(ƒ);
     });
+  });
 
+  describe("get", function() {
     it("by entity and id", function(ƒ) {
       subject.get('people', 123).then(function(result) {
         expect(result.id).toEqual(123);

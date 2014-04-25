@@ -1,5 +1,8 @@
 var gulp = require('gulp');
-var mocha = require('gulp-mocha');
+
+var mocha   = require('gulp-mocha'),
+    nodemon = require('gulp-nodemon')
+
 
 var testFiles = [
   'spec/*.spec.js',
@@ -11,8 +14,12 @@ function handleError(err) {
   this.emit('end');
 }
 
-gulp.task("default", function() {
+gulp.task("test", function() {
   return gulp.src(testFiles)
     .pipe(mocha({ reporter: "spec" })
     .on("error", handleError));
+});
+
+gulp.task('nodemon', function () {
+  return nodemon({ script: 'app.js'})
 });

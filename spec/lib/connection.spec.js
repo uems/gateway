@@ -26,8 +26,7 @@ describe("Connection", function() {
     });
 
     it("with parms", function(ƒ) {
-      // FIXME: nock should specify query string too
-      nockScope.get('/le_path').reply(200, content)
+      nockScope.get('/le_path?query=Xanxa').reply(200, content)
 
       library.get(base+"/le_path", parms).then(function(result) {
         expect(result.a_property).toBe('xunga');

@@ -1,24 +1,21 @@
-app.get('/search/:q', function(req, res) {
-  service.search(query).model(PersonStub).then(function(result) {
-    res.write(result.toJson());
+var express = require('express');
+var app = express();
+
+var personService = require('./lib/services/person_service');
+
+app.use(function(req, res, next) {
+  res.header("Content-Type", "application/json; charset=utf-8");
+  next();
+});
+
+app.get('/search/:query', function(req, res) {
+  personService.search(req.params.query).then(function(result) {
+    res.json(200, result);
+  }).fail(function(err) {
+    res.send(500, err);
   });
-  //
-  service.fetch(entry).model(Person).then(function(result) {
-    return result
-  });
-  /*
-  var services = BackendServices.allFor('people-search');
+});
 
-  var resultPromises = services.map(function(svc) { return svc.search(query); });
-
-  var response = [];
-
-  Q.allSettled(resultPromises).then(function(results) {
-    // results contain [ resultsFromService1, resultsFromService2, ... ]
-    results.forEach(function(result) {
-      response.concat(result);
-    });
-
-    res.write(response.toJson());
-  });*/
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
 });

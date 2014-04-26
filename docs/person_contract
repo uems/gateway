@@ -36,7 +36,7 @@
 {
   query: 'felipe',
   total: 12
-  results: [
+  items: [
     { name: 'Felipe Mobus', link: 'greve://people/1234' },
     { name: 'Felipe Silva', link: 'greve://people/7890' },
     [ ... ]
@@ -47,7 +47,7 @@
 {
   query: 'astrogildo@gmail.com',
   total: 0,
-  results: []
+  items: []
 }
 
 

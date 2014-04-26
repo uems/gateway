@@ -1,12 +1,12 @@
 var express = require('express');
 var app = express();
 
+var middleware = require('./lib/middleware');
 var personService = require('./lib/services/person_service');
 
-app.use(function(req, res, next) {
-  res.header("Content-Type", "application/json; charset=utf-8");
-  next();
-});
+app.use(middleware.setMaxEmiters);
+app.use(middleware.cors());
+app.use(middleware.JsonUTF8);
 
 app.get('/search/:query', function(req, res) {
   personService.search(req.params.query).then(function(result) {

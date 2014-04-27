@@ -4,12 +4,20 @@ var app = express();
 var middleware = require('./lib/middleware');
 var personService = require('./lib/services/person_service');
 
-app.use(middleware.setMaxEmiters);
+app.use(middleware.setMaxListeners);
 app.use(middleware.cors());
 app.use(middleware.JsonUTF8);
 
-app.get('/search/:query', function(req, res) {
-  personService.search(req.params.query).then(function(result) {
+app.get('/people/:source-:id', function(req, res) {
+  personService.get(req.params.source, req.params.id).then(function(result) {
+    res.json(200, result);
+  }).fail(function(err) {
+    res.send(500, err);
+  });
+});
+
+app.get('/people', function(req, res) {
+  personService.search(req.query.q).then(function(result) {
     res.json(200, result);
   }).fail(function(err) {
     res.send(500, err);
@@ -17,5 +25,5 @@ app.get('/search/:query', function(req, res) {
 });
 
 var server = app.listen(3000, function() {
-    console.log('Listening on port %d', server.address().port);
+  console.log('Listening on port %d', server.address().port);
 });

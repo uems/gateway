@@ -8,8 +8,8 @@ app.use(middleware.setMaxListeners);
 app.use(middleware.cors());
 app.use(middleware.JsonUTF8);
 
-app.get('/people/:source-:id', function(req, res) {
-  personService.get(req.params.source, req.params.id).then(function(result) {
+app.get('/people/:xid', function(req, res) {
+  personService.get(req.params.xid).then(function(result) {
     res.json(200, result);
   }).fail(function(err) {
     res.send(500, err);

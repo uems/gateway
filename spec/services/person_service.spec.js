@@ -44,7 +44,7 @@ describe("Person Service", function() {
     });
 
     it("chooses a certain id from a given service", function() {
-      service.get('repo1', id).then(function(results) {
+      service.get('repo1-123').then(function(results) {
         expect(result).toBe('Phillip from repo1');
         sinon.assert.calledWith(repository1.get, id);
       });

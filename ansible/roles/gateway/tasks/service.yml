@@ -1,0 +1,17 @@
+---
+
+- name: creates the service for realtime grid
+  tags:
+    - gateway
+    - config
+  template: src=gateway.j2
+            dest=/etc/init.d/gateway
+            mode=0755
+  notify:
+    - restart gateway
+
+- name: ensures gateway service is enabled
+  tags: gateway
+  service: name=gateway
+           enabled=yes
+           state=restarted

@@ -14,14 +14,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder '.', parms["app_path"]
   config.vm.network :private_network, ip: "192.168.33.20"
-  config.vm.network :forwarded_port, guest: 80, host: 2000
+  config.vm.network :forwarded_port, guest: 2000, host: 2000
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = 'ansible/vagrant.yml'
     ansible.inventory_path = 'ansible/hosts'
     ansible.limit = 'vagrant'
     ansible.host_key_checking = false
-    ansible.verbose='vvv'
     ansible.sudo = true
     ansible.extra_vars = { ansible_ssh_user: 'vagrant' }
   end

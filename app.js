@@ -24,6 +24,6 @@ app.get('/people', function(req, res) {
   });
 });
 
-var server = app.listen(3000, function() {
+var server = app.listen(process.argv[2] || 2000, function() {
   console.log('Listening on port %d', server.address().port);
 });

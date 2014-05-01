@@ -13,7 +13,7 @@ var badgeService  = require('./lib/services/badge_service');
 
 app.post('/people/:xid/print-badge', function(req, res) {
   badgeService.print(req.params.xid).then(function(result) {
-    res.redirect('/people/'+req.params.xid);
+    res.json(200, result);
   }).fail(function(err) {
     res.send(500, err);
   });

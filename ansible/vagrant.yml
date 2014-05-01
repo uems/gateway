@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  sudo: True
+  roles:
+    - accelerate
+
+- hosts: vagrant
+  sudo: true
+  accelerate: true
+  roles:
+    - nodejs
+    - mongodb
+    - gateway

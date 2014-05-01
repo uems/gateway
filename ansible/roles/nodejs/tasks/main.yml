@@ -1,0 +1,21 @@
+---
+
+- name: add pycurl
+  apt: package=python-pycurl
+       state=installed
+  tags: nodejs
+
+- name: add wheezy-backports
+  tags: nodejs
+  apt_repository: repo='deb http://ftp.us.debian.org/debian wheezy-backports main'
+                  state=present
+                  update_cache=yes
+
+- name: install debian node packages
+  tags: nodejs
+  apt: pkg=nodejs,nodejs-legacy
+
+- name: installs npm
+  tags: nodejs
+  shell: curl --insecure https://www.npmjs.org/install.sh | clean=no bash
+         creates=/usr/bin/npm

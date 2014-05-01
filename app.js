@@ -1,12 +1,23 @@
 var express = require('express');
 var app = express();
 
-var middleware = require('./lib/middleware');
-var personService = require('./lib/services/person_service');
+var middleware    = require('./lib/middleware');
 
 app.use(middleware.setMaxListeners);
 app.use(middleware.cors());
 app.use(middleware.JsonUTF8);
+
+var personService = require('./lib/services/person_service');
+var badgeService  = require('./lib/services/badge_service');
+
+
+app.post('/people/:xid/print-badge', function(req, res) {
+  badgeService.print(req.params.xid).then(function(result) {
+    res.redirect('/people/'+req.params.xid);
+  }).fail(function(err) {
+    res.send(500, err);
+  });
+});
 
 app.get('/people/:xid', function(req, res) {
   personService.get(req.params.xid).then(function(result) {

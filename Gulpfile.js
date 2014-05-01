@@ -21,7 +21,7 @@ gulp.task("test", function() {
 });
 
 gulp.task('nodemon', function () {
-  return nodemon({ script: 'app.js'})
+  return nodemon({ script: 'app.js' })
 });
 
 gulp.task("default", ["test"]);

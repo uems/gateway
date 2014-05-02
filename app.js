@@ -16,7 +16,7 @@ app.post('/people/:xid/print-:kind', function(req, res) {
     res.json(200, result);
   }).fail(function(err) {
     res.send(500, err);
-  });
+  }).done();
 });
 
 app.get('/people/:xid', function(req, res) {
@@ -24,7 +24,7 @@ app.get('/people/:xid', function(req, res) {
     res.json(200, result);
   }).fail(function(err) {
     res.send(500, err);
-  });
+  }).done();
 });
 
 app.get('/people', function(req, res) {
@@ -32,7 +32,7 @@ app.get('/people', function(req, res) {
     res.json(200, result);
   }).fail(function(err) {
     res.send(500, err);
-  });
+  }).done();
 });
 
 var server = app.listen(process.argv[2] || 2000, function() {

@@ -9,6 +9,12 @@ var stubs = {
   factory:    require('../../lib/factories/person_factory')
 };
 
+function failure(v) {
+  var deferred = Q.defer();
+  deferred.reject(v);
+  return deferred.promise;
+}
+
 describe('Person Repository', function() {
   var library, subject;
   var fakeConn;
@@ -42,6 +48,13 @@ describe('Person Repository', function() {
       subject.get(123).then(function(result) {
         sinon.assert.calledWith(stubs.factory.build, leela, repo);
         expect(result).toEqual('built leela from NNY');
+      }).µ(ƒ);
+    });
+    it("fails the promise in case of http errors", function() {
+      fakeConn.get.withArgs(endpoint+'/people/123').returns(failure('xx'));
+
+      subject.get(123).fail(function(err) {
+        expect(err).toBe('xx');
       }).µ(ƒ);
     });
   });

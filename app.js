@@ -11,8 +11,8 @@ var personService = require('./lib/services/person_service');
 var badgeService  = require('./lib/services/badge_service');
 
 
-app.post('/people/:xid/print-:kind', function(req, res) {
-  badgeService.print(req.params.xid, req.params.kind).then(function(result) {
+app.post('/people/:xid/print-:kind/:printer', function(req, res) {
+  badgeService.print(req.params.xid, req.params.kind, req.params.printer).then(function(result) {
     res.json(200, result);
   }).fail(function(err) {
     res.send(500, err);

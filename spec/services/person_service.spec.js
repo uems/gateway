@@ -19,20 +19,20 @@ describe("Person Service", function() {
   var repository2 = { search: sinon.stub(), get: sinon.stub() };
 
   before(function() {
-    stubs.config.repositories = {
-      repo1: endpoint1,
-      repo2: endpoint2
-    };
+    stubs.config.repositories = [
+      { name: 'repo1', endpoint: endpoint1, user: 'user1', pass: 'pass1' },
+      { name: 'repo2', endpoint: endpoint2, user: 'user2', pass: 'pass2' }
+    ];
     sinon.stub(stubs.repository,'build');
-    stubs.repository.build.withArgs(endpoint1, 'repo1').returns(repository1);
-    stubs.repository.build.withArgs(endpoint2, 'repo2').returns(repository2);
+    stubs.repository.build.withArgs(stubs.config.repositories[0]).returns(repository1);
+    stubs.repository.build.withArgs(stubs.config.repositories[1]).returns(repository2);
 
     service = require("../../lib/services/person_service.js");
   });
 
   it("has a repository for each endpoint", function() {
-    sinon.assert.calledWith(stubs.repository.build, endpoint1, 'repo1');
-    sinon.assert.calledWith(stubs.repository.build, endpoint2, 'repo2');
+    sinon.assert.calledWith(stubs.repository.build, stubs.config.repositories[0]);
+    sinon.assert.calledWith(stubs.repository.build, stubs.config.repositories[1]);
   });
 
   describe("get", function() {

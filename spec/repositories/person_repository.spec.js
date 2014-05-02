@@ -13,8 +13,9 @@ describe('Person Repository', function() {
   var library, subject;
   var fakeConn;
 
-  var repo     = 'New New York';
-  var endpoint = 'http://localhost:9999';
+  var repo       = 'New New York';
+  var endpoint   = 'http://localhost:9999';
+  var descriptor = { name: repo, endpoint: endpoint, auth: 'jack', pass: 'tequila' };
 
   var leela   = { 'id': 123, 'name': 'Turanga Leela'   };
   var fry     = { 'id': 456, 'name': 'Phillip J. Fry'  };
@@ -30,7 +31,7 @@ describe('Person Repository', function() {
     sinon.stub(stubs.connection, 'build').returns(fakeConn);
     sinon.stub(stubs.factory, 'build');
     library = require('../../lib/repositories/person_repository');
-    subject = library.build(endpoint, repo);
+    subject = library.build(descriptor);
   });
 
   describe('get by id', function(ƒ) {

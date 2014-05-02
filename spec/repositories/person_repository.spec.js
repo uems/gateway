@@ -11,6 +11,7 @@ var stubs = {
 
 describe('Person Repository', function() {
   var library, subject;
+  var fakeConn;
 
   var repo     = 'New New York';
   var endpoint = 'http://localhost:9999';
@@ -25,7 +26,8 @@ describe('Person Repository', function() {
   ] };
 
   before(function() {
-    sinon.stub(stubs.connection,'get');
+    fakeConn = { get: sinon.stub() };
+    sinon.stub(stubs.connection, 'build').returns(fakeConn);
     sinon.stub(stubs.factory, 'build');
     library = require('../../lib/repositories/person_repository');
     subject = library.build(endpoint, repo);
@@ -33,7 +35,7 @@ describe('Person Repository', function() {
 
   describe('get by id', function(ƒ) {
     it('builds a person from /people/123', function() {
-      stubs.connection.get.withArgs(endpoint+'/people/123').returns(Q.when(leela));
+      fakeConn.get.withArgs(endpoint+'/people/123').returns(Q.when(leela));
       stubs.factory.build.withArgs(leela, repo).returns('built leela from NNY');
 
       subject.get(123).then(function(result) {
@@ -47,9 +49,9 @@ describe('Person Repository', function() {
     var query = 'Phillip';
 
     it('builds one person for every item on result', function(ƒ) {
-      stubs.connection.get.withArgs(endpoint+'/people', { query: query }).returns(Q.when(searchPhillip));
-      stubs.connection.get.withArgs(endpoint+'/people/456').returns(Q.when(fry));
-      stubs.connection.get.withArgs(endpoint+'/people/789').returns(Q.when(scruffy));
+      fakeConn.get.withArgs(endpoint+'/people', { query: query }).returns(Q.when(searchPhillip));
+      fakeConn.get.withArgs(endpoint+'/people/456').returns(Q.when(fry));
+      fakeConn.get.withArgs(endpoint+'/people/789').returns(Q.when(scruffy));
       stubs.factory.build.withArgs(fry, repo).returns('built fry from NNY');
       stubs.factory.build.withArgs(scruffy, repo).returns('built scruffy from NNY');
 

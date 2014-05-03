@@ -1,5 +1,6 @@
 require('../spec_helper');
 
+var Q = require('q');
 var expect = require('expect');
 
 describe('Person Factory', function() {
@@ -14,19 +15,25 @@ describe('Person Factory', function() {
     var built;
 
     beforeEach(function() {
-      built = library.build(data, source);
+      built = library.build(data, source, Q.when([]));
     });
 
     it('inserts source name in object', function() {
-      expect(built.source).toEqual('westeros');
+      built.then(function(person) {
+        expect(person.source).toEqual('westeros');
+      })
     });
 
     it('inserts xid in object', function() {
-      expect(built.xid).toEqual('westeros-123');
+      built.then(function(person) {
+        expect(person.xid).toEqual('westeros-123');
+      });
     });
 
     it("replaces uri with this host's", function() {
-      expect(built.uri).toEqual('http://localhost:3000/people/westeros-123');
+      built.then(function(person) {
+        expect(person.uri).toEqual('http://localhost:3000/people/westeros-123');
+      });
     });
   });
 

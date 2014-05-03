@@ -36,7 +36,7 @@ describe('Person Repository', function() {
     fakeConn = { get: sinon.stub() };
     sinon.stub(stubs.connection, 'build').returns(fakeConn);
     sinon.stub(stubs.factory, 'build');
-    library = require('../../lib/repositories/person_repository');
+    library = require('../../lib/repositories/people');
     subject = library.build(descriptor);
   });
 

@@ -6,7 +6,7 @@ var sinon  = require('sinon');
 var expect = require('expect');
 
 var stubs = {
-  repository: require('../../lib/repositories/person_repository'),
+  repository: require('../../lib/repositories/people'),
   config:     require('../../lib/config.js')
 };
 

@@ -37,8 +37,8 @@
   query: 'felipe',
   total: 12
   items: [
-    { name: 'Felipe Mobus', link: 'greve://people/1234' },
-    { name: 'Felipe Silva', link: 'greve://people/7890' },
+    { name: 'Felipe Mobus', xid: 'greve-1243', link: 'greve://people/1234' },
+    { name: 'Felipe Silva', xid: 'greve-7890', link: 'greve://people/7890' },
     [ ... ]
   ]
 }

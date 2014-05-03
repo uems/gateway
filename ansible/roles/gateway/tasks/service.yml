@@ -10,7 +10,7 @@
   notify:
     - restart gateway
 
-- name: ensures gateway service is enabled
+- name: ensures gateway service is enabled and running
   tags: gateway
   service: name=gateway
            enabled=yes

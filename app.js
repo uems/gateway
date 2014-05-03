@@ -16,7 +16,7 @@ function errorAsJson(err) {
   return {
     'error': err.toString(),
     'stack': err.stack
-  }
+  };
 }
 
 app.post('/people/:xid/print-:kind/:printer', function(req, res) {
@@ -50,6 +50,15 @@ app.post('/people/:xid/set-document', function(req, res) {
     res.send(500, errorAsJson(err));
   }).done();
 });
+
+app.post('/people/:xid/set-badge-name', function(req, res) {
+  personService.setBadgeName(req.params.xid, req.body.badgeName).then(function(result) {
+    res.json(200, { changed: result });
+  }).fail(function(err) {
+    res.send(500, errorAsJson(err));
+  }).done();
+});
+
 
 app.get('/people/:xid', function(req, res) {
   personService.get(req.params.xid).then(function(result) {

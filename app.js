@@ -54,6 +54,9 @@ app.get('/people/:xid', function(req, res) {
 });
 
 app.get('/people', function(req, res) {
+  if (!req.query.q) {
+    res.send(400, { 'error': 'must provide query' });
+  }
   personService.search(req.query.q).then(function(result) {
     res.json(200, result);
   }).fail(function(err) {

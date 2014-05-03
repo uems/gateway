@@ -59,6 +59,13 @@ app.post('/people/:xid/set-badge-name', function(req, res) {
   }).done();
 });
 
+app.post('/people/:xid/set-badge-corp', function(req, res) {
+  personService.setBadgeCorp(req.params.xid, req.body.badgeCorp).then(function(result) {
+    res.json(200, { changed: result });
+  }).fail(function(err) {
+    res.send(500, errorAsJson(err));
+  }).done();
+});
 
 app.get('/people/:xid', function(req, res) {
   personService.get(req.params.xid).then(function(result) {

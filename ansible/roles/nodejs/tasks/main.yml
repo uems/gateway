@@ -1,6 +1,6 @@
 ---
 
-- name: add pycurl
+- name: ensure we have urllib2 and urlparse
   apt: package=python-pycurl
        state=installed
   tags: nodejs
@@ -13,7 +13,7 @@
 
 - name: install debian node packages
   tags: nodejs
-  apt: pkg=nodejs,nodejs-legacy
+  apt: pkg=nodejs,nodejs-legacy,gcc,make,build-essential
 
 - name: installs npm
   tags: nodejs

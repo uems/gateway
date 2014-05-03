@@ -1,25 +1,5 @@
 ---
 
-- name: add pycurl
-  apt: package=python-pycurl
-       state=installed
-  tags: gateway
-
-- name: add wheezy-backports
-  tags: gateway
-  apt_repository: repo='deb http://ftp.us.debian.org/debian wheezy-backports main'
-                  state=present
-                  update_cache=yes
-
-- name: install debian node packages
-  tags: gateway
-  apt: pkg=nodejs,nodejs-legacy
-
-- name: installs npm
-  tags: gateway
-  shell: curl --insecure https://www.npmjs.org/install.sh | clean=no bash
-         creates=/usr/bin/npm
-
 - name: installs gulp
   tags: gateway
   npm: name=gulp

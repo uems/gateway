@@ -11,7 +11,7 @@
                   state=present
                   update_cache=yes
 
-- name: install debian node packages
+- name: install debian node packages (we need compiling stuff to be able to use BSON c++ impl)
   tags: nodejs
   apt: pkg=nodejs,nodejs-legacy,gcc,make,build-essential
 

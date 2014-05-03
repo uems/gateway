@@ -3,9 +3,10 @@ var app = express();
 
 var middleware    = require('./lib/middleware');
 
-app.use(middleware.setMaxListeners);
 app.use(middleware.cors());
 app.use(middleware.JsonUTF8);
+app.use(middleware.setMaxListeners);
+app.use(middleware.logger({ format: 'dev' }));
 
 var personService = require('./lib/services/person_service');
 var badgeService  = require('./lib/services/badge_service');

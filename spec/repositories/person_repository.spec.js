@@ -40,7 +40,7 @@ describe('Person Repository', function() {
     subject = library.build(descriptor);
   });
 
-  describe('get by id', function(ƒ) {
+  xdescribe('get by id', function(ƒ) {
     it('builds a person from /people/123', function() {
       fakeConn.get.withArgs(endpoint+'/people/123').returns(Q.when(leela));
       stubs.factory.build.withArgs(leela, repo).returns('built leela from NNY');
@@ -59,7 +59,7 @@ describe('Person Repository', function() {
     });
   });
 
-  describe('search by free form', function() {
+  xdescribe('search by free form', function() {
     var query = 'Phillip';
 
     it('builds one person for every item on result', function(ƒ) {

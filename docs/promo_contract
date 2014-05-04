@@ -1,0 +1,15 @@
+// GET greve://promo/ABCDEFGH
+{
+  id: 1234,
+  uri: 'greve://promo/ABCDEFGH',
+  hash: 'ABCDEFGH',
+  title: 'diretoria FUFINFA',
+  off_rate: 100,
+  max_regs: 1,
+  used_regs: 0,
+  active: true|false,
+  username: 'jr',
+  created_at: '...',
+  updated_at: '...',
+
+}

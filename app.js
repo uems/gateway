@@ -28,6 +28,11 @@ app.post('/people/:xid/print-:kind/:printer', function(req, res) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });
+app.post('/people/:xid/give-badge', function(req, res) {
+  badgeService.giveBadge(req.params.xid).then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
 
 app.post('/people/:xid/set-name', function(req, res) {
   personService.setName(req.params.xid, req.body.name).then(function(result) {

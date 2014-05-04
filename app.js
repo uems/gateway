@@ -14,9 +14,14 @@ var badgeService  = require('./lib/services/badge_service');
 
 function errorAsJson(res) {
   return function(err) {
+    console.log(err);
     return res.send(500, JSON.stringify(err));
   };
 }
+
+app.post('/people/:xid/pay-ticket/:tid', function(req, res) {
+  personService.payTicket(req.params.xid, req.params);
+});
 
 app.post('/people/:xid/print-:kind/:printer', function(req, res) {
   badgeService.print(req.params.xid, req.params.kind, req.params.printer).then(function(result) {

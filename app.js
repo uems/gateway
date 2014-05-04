@@ -60,6 +60,13 @@ app.post('/people/:xid/set-country', function(req, res) {
   }).fail(errorAsJson(res)).done();
 });
 
+app.post('/people/:xid/set-category', function(req, res) {
+  personService.setCategory(req.params.xid, req.body.category).then(function(result) {
+    res.json(200, { changed: result });
+  }).fail(errorAsJson(res)).done();
+});
+
+
 
 app.get('/people/:xid', function(req, res) {
   personService.get(req.params.xid).then(function(result) {

@@ -12,87 +12,68 @@ app.use(middleware.logger({ format: 'dev' }));
 var personService = require('./lib/services/person_service');
 var badgeService  = require('./lib/services/badge_service');
 
-function errorAsJson(err) {
-  return {
-    'error': err.toString(),
-    'stack': err.stack
+function errorAsJson(res) {
+  return function(err) {
+    return res.send(500, JSON.stringify(err));
   };
 }
 
 app.post('/people/:xid/print-:kind/:printer', function(req, res) {
   badgeService.print(req.params.xid, req.params.kind, req.params.printer).then(function(result) {
     res.json(200, result);
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 app.post('/people/:xid/set-name', function(req, res) {
   personService.setName(req.params.xid, req.body.name).then(function(result) {
     res.json(200, { changed: result });
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 app.post('/people/:xid/set-email', function(req, res) {
   personService.setEmail(req.params.xid, req.body.email).then(function(result) {
     res.json(200, { changed: result });
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 app.post('/people/:xid/set-document', function(req, res) {
   personService.setDocument(req.params.xid, req.body.document).then(function(result) {
     res.json(200, { changed: result });
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 app.post('/people/:xid/set-badge-name', function(req, res) {
   personService.setBadgeName(req.params.xid, req.body.badgeName).then(function(result) {
     res.json(200, { changed: result });
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 app.post('/people/:xid/set-badge-corp', function(req, res) {
   personService.setBadgeCorp(req.params.xid, req.body.badgeCorp).then(function(result) {
     res.json(200, { changed: result });
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 app.post('/people/:xid/set-country', function(req, res) {
   personService.setCountry(req.params.xid, req.body.country).then(function(result) {
     res.json(200, { changed: result });
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 
 app.get('/people/:xid', function(req, res) {
   personService.get(req.params.xid).then(function(result) {
     res.json(200, result);
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 app.get('/people', function(req, res) {
   if (!req.query.q) {
-    res.send(400, { 'error': 'must provide query' });
+    return res.send(400, { 'error': 'must provide query' });
   }
   personService.search(req.query.q).then(function(result) {
     res.json(200, result);
-  }).fail(function(err) {
-    res.send(500, errorAsJson(err));
-  }).done();
+  }).fail(errorAsJson(res)).done();
 });
 
 var server = app.listen(process.argv[2] || 2000, function() {

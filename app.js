@@ -28,8 +28,15 @@ app.post('/people/:xid/print-:kind/:printer', function(req, res) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });
+
 app.post('/people/:xid/give-badge', function(req, res) {
   badgeService.giveBadge(req.params.xid).then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
+
+app.post('/people/:xid/accept-proof', function(req, res) {
+  personService.acceptProof(req.params.xid, req.body.proofFor).then(function(result) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });
@@ -75,7 +82,6 @@ app.post('/people/:xid/set-category', function(req, res) {
     res.json(200, { changed: result });
   }).fail(errorAsJson(res)).done();
 });
-
 
 
 app.get('/people/:xid', function(req, res) {

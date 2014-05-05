@@ -14,8 +14,9 @@ var badgeService  = require('./lib/services/badge_service');
 
 function errorAsJson(res) {
   return function(err) {
+    var status  = err.status || 500;
     console.log(err);
-    return res.send(500, JSON.stringify(err));
+    return res.send(status, JSON.stringify(err));
   };
 }
 
@@ -25,6 +26,12 @@ app.post('/people/:xid/pay-ticket/:tid', function(req, res) {
 
 app.post('/people/:xid/print-:kind/:printer', function(req, res) {
   badgeService.print(req.params.xid, req.params.kind, req.params.printer).then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
+
+app.post('/people/:xid/apply-promocode', function(req, res) {
+  personService.applyPromocode(req.params.xid, req.body.hash).then(function(result) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });

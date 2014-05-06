@@ -96,6 +96,11 @@ app.post('/people/:xid/set-category', function(req, res) {
   }).fail(errorAsJson(res)).done();
 });
 
+app.post('/people/:xid/set-gender', function(req, res) {
+  personService.setGender(req.params.xid, req.body.gender).then(function(result) {
+    res.json(200, { changed: result });
+  }).fail(errorAsJson(res)).done();
+});
 
 app.get('/people/:xid', function(req, res) {
   personService.get(req.params.xid).then(function(result) {

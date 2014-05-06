@@ -108,6 +108,15 @@ app.get('/people/:xid', function(req, res) {
   }).fail(errorAsJson(res)).done();
 });
 
+app.post('/people', function(req, res) {
+  if (!req.body.email) {
+    return res.send(400, { 'error': 'must provide email' });
+  }
+  personService.create(req.body.email).then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
+
 app.get('/people', function(req, res) {
   if (!req.query.q) {
     return res.send(400, { 'error': 'must provide query' });

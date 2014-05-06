@@ -1,0 +1,17 @@
+module.exports = {
+  repositories: [
+    {% for descriptor in repositories %}
+      {
+        name:     '{{ descriptor.name     }}',
+        endpoint: '{{ descriptor.endpoint }}',
+        user:     '{{ descriptor.user     }}',
+        pass:     '{{ descriptor.pass     }}',
+      },
+    {% endfor %}
+  ],
+  printers: {
+    {% for printer in printers %}
+      '{{ printer.name }}': '{{ printer.endpoint }}',
+    {% endfor %}
+  }
+};

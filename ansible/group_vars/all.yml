@@ -1,0 +1,6 @@
+---
+
+git_branch: master
+git_repo: https://github.com/uems/gateway.git
+app_path: /opt/gateway
+port: 2000

@@ -1,14 +1,15 @@
 ---
 
-- hosts: vagrant
+- hosts: venue
   sudo: True
   roles:
     - accelerate
 
-- hosts: vagrant
+- hosts: venue
   sudo: true
   accelerate: true
   roles:
+    - application
     - nodejs
     - mongodb
     - gateway

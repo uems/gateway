@@ -15,6 +15,7 @@ var badgeService  = require('./lib/services/badge_service');
 function errorAsJson(res) {
   return function(err) {
     var status  = err.status || 500;
+    console.log(err.stack);
     console.log(err);
     return res.send(status, JSON.stringify(err));
   };

@@ -1,0 +1,13 @@
+---
+
+- name: ensure we have git installed (srsly?)
+  apt: pkg=git
+
+- name: Pull latest version from git repository
+  git: repo={{ git_repo }}
+       dest={{ app_path }}
+       version={{ git_branch }}
+       update=yes
+  tags: git
+
+

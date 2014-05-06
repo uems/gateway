@@ -1,5 +1,11 @@
 ---
 
+- name: configures the gateway for this environment
+  tags: config
+  template: src=config.js.j2
+            dest={{ app_path }}/lib/config.js
+            mode=0755
+
 - name: creates the service for realtime grid
   tags:
     - gateway

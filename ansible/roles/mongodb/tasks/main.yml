@@ -13,10 +13,11 @@
 
 - name: Install latest MongoDB release
   tags: mongodb
-  apt: pkg=mongodb-org
+  apt: pkg=mongodb
        state=present
        update_cache=yes
 
 - name: Ensure deamon is running correctly
   tags: mongodb
-  service: name=mongod state=started
+  service: name=mongodb
+           state=restarted

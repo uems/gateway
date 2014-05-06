@@ -2,3 +2,17 @@
 
 app_path: /opt/gateway
 port: 2000
+
+repositories:
+  - name: papers
+    endpoint: 'http://192.168.33.80/papers_ng/api'
+    user: api_user
+    pass: api_pass
+  - name: greve
+    endpoint: 'http://192.168.33.90/greve/api'
+    user: api_user
+    pass: api_pass
+
+printers:
+  - name: 1
+    endpoint: 'http://10.5.0.21:7001'

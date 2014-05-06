@@ -31,6 +31,12 @@ app.post('/people/:xid/print-:kind/:printer', function(req, res) {
   }).fail(errorAsJson(res)).done();
 });
 
+app.post('/people/:xid/move-badge/:location', function(req, res) {
+  badgeService.move(req.params.xid, req.params.location).then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
+
 app.post('/people/:xid/apply-promocode', function(req, res) {
   personService.applyPromocode(req.params.xid, req.body.hash).then(function(result) {
     res.json(200, result);

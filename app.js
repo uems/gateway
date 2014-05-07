@@ -139,6 +139,12 @@ app.get('/people', function(req, res) {
   }).fail(errorAsJson(res)).done();
 });
 
+app.get('/payments', function(req, res) {
+  cashTicketService.getAllByIp(req.query.ip, personService).then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
+
 app.post('/badge/:printer', function(req, res) {
   if (!req.body.reason) {
     return res.send(400, { 'error': 'must provide reason' });

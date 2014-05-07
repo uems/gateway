@@ -11,6 +11,7 @@ app.use(middleware.logger({ format: 'dev' }));
 
 var personService = require('./lib/services/person_service');
 var badgeService  = require('./lib/services/badge_service');
+var cashTicketService = require('./lib/services/cash_ticket_service');
 
 function errorAsJson(res) {
   return function(err) {
@@ -140,7 +141,7 @@ app.get('/people', function(req, res) {
 });
 
 app.get('/payments', function(req, res) {
-  cashTicketService.getAllByIp(req.query.ip, personService).then(function(result) {
+  cashTicketService.getPaymentsByIp(req.query.ip).then(function(result) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });

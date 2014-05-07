@@ -125,7 +125,7 @@ app.post('/people', function(req, res) {
   if (!req.body.email) {
     return res.send(400, { 'error': 'must provide email' });
   }
-  personService.create(req.body.email).then(function(result) {
+  personService.createPerson(req.body.email).then(function(result) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });

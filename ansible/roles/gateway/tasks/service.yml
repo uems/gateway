@@ -6,7 +6,7 @@
             dest={{ app_path }}/lib/config.js
             mode=0755
 
-- name: creates the service for realtime grid
+- name: creates the service for gateway grid
   tags:
     - gateway
     - config
@@ -17,7 +17,9 @@
     - restart gateway
 
 - name: ensures gateway service is enabled and running
-  tags: gateway
+  tags:
+    - gateway
+    - restart
   service: name=gateway
            enabled=yes
            state=restarted

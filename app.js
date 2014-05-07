@@ -50,7 +50,13 @@ app.post('/people/:xid/give-badge', function(req, res) {
 });
 
 app.post('/people/:xid/accept-proof', function(req, res) {
-  personService.acceptProof(req.params.xid, req.body.proofFor).then(function(result) {
+  personService.acceptProof(req.params.xid, req.body.proofFor, req.ip).then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
+
+app.post('/people/:xid/accept-cash', function(req, res) {
+  personService.acceptCash(req.params.xid, req.body.ticket, req.ip).then(function(result) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });

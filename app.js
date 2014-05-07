@@ -140,8 +140,8 @@ app.get('/people', function(req, res) {
   }).fail(errorAsJson(res)).done();
 });
 
-app.get('/payments', function(req, res) {
-  cashTicketService.getPaymentsByIp(req.query.ip).then(function(result) {
+app.get('/payments/:ip', function(req, res) {
+  cashTicketService.getPaymentsByIp(req.params.ip, personService).then(function(result) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });

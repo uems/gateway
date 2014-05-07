@@ -1,5 +1,6 @@
 ---
 
+app_host: http://localhost:2000
 git_branch: master
 git_repo: https://github.com/uems/gateway.git
 app_path: /opt/gateway

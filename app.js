@@ -141,7 +141,7 @@ app.get('/people', function(req, res) {
 });
 
 app.get('/payments/:ip', function(req, res) {
-  cashTicketService.getPaymentsByIp(req.params.ip, personService).then(function(result) {
+  cashTicketService.getPaymentsByIp(req.params.ip, req.query.day, personService).then(function(result) {
     res.json(200, result);
   }).fail(errorAsJson(res)).done();
 });

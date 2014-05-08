@@ -1,5 +1,10 @@
 module.exports = {
   app_host: '{{ app_host }}',
+  operators: {
+    {% for operator in operators %}
+      '{{ operator.ip }}': '{{ operator.name }}',
+    {% endfor %}
+  },
   repositories: [
     {% for descriptor in repositories %}
       {

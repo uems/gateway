@@ -162,6 +162,12 @@ app.post('/badge/:printer', function(req, res) {
 });
 
 
+app.get('/listing', function(req, res) {
+  personService.listing().then(function(result) {
+    res.json(200, result);
+  }).fail(errorAsJson(res)).done();
+});
+
 
 var server = app.listen(process.argv[2] || 2000, function() {
   console.log('Listening on port %d', server.address().port);

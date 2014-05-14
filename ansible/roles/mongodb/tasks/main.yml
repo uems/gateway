@@ -2,3 +2,4 @@
 
 - include: install.yml
 - include: backup.yml
+  when: backup

@@ -2,6 +2,7 @@
 
 app_path: /opt/gateway
 port: 2000
+jwt_secret: sshh
 
 repositories:
   - name: papers

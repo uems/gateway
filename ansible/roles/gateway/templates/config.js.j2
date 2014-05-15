@@ -1,4 +1,5 @@
 module.exports = {
+  secret: '{{ jwt_secret }}',
   app_host: '{{ app_host }}',
   operators: {
     {% for operator in operators %}

@@ -1,6 +1,7 @@
 module.exports = {
   secret: '{{ jwt_secret }}',
   app_host: '{{ app_host }}',
+  afterconf: '{{ afterconf }}',
   certs: {
     endpoint: '{{ certs.endpoint }}',
     user:     '{{ certs.user     }}',
@@ -25,5 +26,14 @@ module.exports = {
     {% for printer in printers %}
       '{{ printer.name }}': '{{ printer.endpoint }}',
     {% endfor %}
+  },
+  sendmail: {
+    secureConnection: true,
+    host: '{{ sendmail.host }}',
+    port: {{ sendmail.port }},
+    auth: {
+      user: '{{ sendmail.user }}',
+      pass: '{{ sendmail.pass }}',
+    }
   }
 };

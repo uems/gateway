@@ -4,6 +4,8 @@ app_path: /opt/gateway
 port: 2000
 jwt_secret: sshh
 
+afterconf: 'http://afterconf.127.0.0.1.xip.io:3000'
+
 repositories:
   - name: papers
     endpoint: 'http://192.168.33.80/papers_ng/api'
@@ -32,3 +34,9 @@ operators:
     ip: '10.5.0.23'
   - name: novos-4
     ip: '10.5.0.24'
+
+sendmail:
+  host: mailtrap.io
+  port: 25
+  user: 182216d8d6f0888c9
+  pass: 86df32ce7263ba

@@ -14,6 +14,11 @@ repositories:
     user: api_user
     pass: api_pass
 
+certs:
+  endpoint: 'http://192.168.33.72.xip.io:7002/certificate'
+  user: api_user
+  pass: api_pass
+
 printers:
   - name: 1
     endpoint: 'http://10.5.0.21:7001'

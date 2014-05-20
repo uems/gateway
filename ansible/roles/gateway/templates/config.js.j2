@@ -1,6 +1,11 @@
 module.exports = {
   secret: '{{ jwt_secret }}',
   app_host: '{{ app_host }}',
+  certs: {
+    endpoint: '{{ certs.endpoint }}',
+    user:     '{{ certs.user     }}',
+    pass:     '{{ certs.pass     }}',
+  },
   operators: {
     {% for operator in operators %}
        '{{ operator.name }}': '{{ operator.ip }}',

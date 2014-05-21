@@ -28,9 +28,10 @@ module.exports = {
     {% endfor %}
   },
   sendmail: {
-    secureConnection: true,
+    secureConnection: {{ sendmail.secure_connection }},
     host: '{{ sendmail.host }}',
     port: {{ sendmail.port }},
+    from: '{{ sendmail.from }}',
     auth: {
       user: '{{ sendmail.user }}',
       pass: '{{ sendmail.pass }}',

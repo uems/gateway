@@ -1,0 +1,10 @@
+<VirtualHost *:{{ webport }}>
+  ServerAdmin webmaster@localhost
+  ServerName  {{ sitename }}.{{ master_host }}
+
+  ProxyPass         / http://localhost:2000/
+  ProxyPassReverse  / http://localhost:2000/
+  ProxyPreserveHost On
+
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+</VirtualHost>

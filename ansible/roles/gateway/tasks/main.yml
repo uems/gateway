@@ -2,3 +2,4 @@
 
 - include: node.yml
 - include: service.yml
+- include: apache.yml

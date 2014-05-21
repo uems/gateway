@@ -1,8 +1,10 @@
 ---
 
-app_host: http://localhost:2000
+app_host: http://{{ sitename }}.{{ master_host }}
 git_branch: master
 git_repo: https://github.com/uems/gateway.git
 app_path: /opt/gateway
 port: 2000
 backup: false
+sitename: gateway
+webport: 80

@@ -1,8 +1,11 @@
 ---
 
+webhost: 192.168.33.20.xip.io
 app_path: /opt/gateway
 port: 2000
 jwt_secret: sshh
+
+master_host: 192.168.33.20.xip.io
 
 afterconf: 'http://afterconf.127.0.0.1.xip.io:3000'
 
@@ -36,7 +39,9 @@ operators:
     ip: '10.5.0.24'
 
 sendmail:
+  secure_connection: 'false'
   host: mailtrap.io
-  port: 25
+  port: 2525
   user: 182216d8d6f0888c9
   pass: 86df32ce7263ba
+  from: inscricao.fisl@mailtrap.io

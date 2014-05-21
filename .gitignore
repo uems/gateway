@@ -5,3 +5,5 @@ vagrant_ansible_inventory_default
 PENDING
 lib/config.js
 ansible/group_vars/venue.yml
+ansible/group_vars/production.yml
+

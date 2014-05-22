@@ -4,9 +4,11 @@
   apt: pkg=apache2
        state=installed
 
-- name: Create an apache site named certs
+- name: Create an apache site named gateway
+  tags: config
   template: src=apache_site_gateway.j2
             dest=/etc/apache2/sites-available/gateway
+  notify: restart apache2
 
 - name: Enable proxy and proxy_http
   command: a2enmod proxy proxy_http

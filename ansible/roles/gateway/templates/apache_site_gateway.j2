@@ -1,6 +1,7 @@
 <VirtualHost *:{{ webport }}>
   ServerAdmin webmaster@localhost
   ServerName  {{ sitename }}.{{ master_host }}
+  ServerName  {{ sitename }}.{{ ansible_default_ipv4.address }}.xip.io
 
   ProxyPass         / http://localhost:2000/
   ProxyPassReverse  / http://localhost:2000/

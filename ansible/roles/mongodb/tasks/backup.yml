@@ -6,7 +6,7 @@
         state=directory
         mode=0755
 
-- name: ensure there is a directory papers_ng inside backups
+- name: ensure there is a directory gateway inside backups
   tags: backup
   file: path=/var/backups/gateway/
         state=directory
@@ -17,7 +17,7 @@
     - config
     - backup
   template: src=history_backuper.sh.j2
-            owner=postgres
+            owner=root
             mode=0755
             dest=/usr/local/sbin/history_backuper.sh
 

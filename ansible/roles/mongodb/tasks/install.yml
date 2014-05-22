@@ -20,4 +20,4 @@
 - name: Ensure deamon is running correctly
   tags: mongodb
   service: name=mongodb
-           state=restarted
+           state=started

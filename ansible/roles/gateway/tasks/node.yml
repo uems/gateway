@@ -1,0 +1,10 @@
+---
+
+- name: installs gulp
+  tags: gateway
+  npm: name=gulp
+       global=yes
+
+- name: installs required npm packages
+  tags: gateway
+  npm: path={{ app_path }}

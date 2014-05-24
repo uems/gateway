@@ -1,0 +1,15 @@
+---
+
+- hosts: venue
+  sudo: True
+  roles:
+    - accelerate
+
+- hosts: venue
+  sudo: true
+  accelerate: true
+  roles:
+    - application
+    - nodejs
+    - mongodb
+    - gateway

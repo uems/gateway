@@ -1,0 +1,21 @@
+#!/bin/bash
+
+date=`date +%Y-%m-%d_%H_%M`
+dirname="history_${date}"
+filename="history_${date}.tgz"
+
+cd /tmp
+mongodump -db history -o $dirname
+tar -zcvf $filename $dirname
+cp $filename /var/backups/gateway/${filename}
+scp ${filename} {{ backup_host }}:/var/backups/gateway/${filename}
+
+
+# filename=transitions_${date}.gz
+# mongodump -db history --collection transitions --out - | gzip > ${filename}
+# scp ${filename} {{ backup_host }}:/var/backups/gateway/${filename}
+#
+# filename=people_${date}.gz
+# mongodump -db history --collection people --out - | gzip > ${filename}
+# scp ${filename} {{ backup_host }}:/var/backups/gateway/${filename}
+

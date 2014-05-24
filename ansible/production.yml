@@ -1,0 +1,17 @@
+---
+
+- hosts: production
+  sudo: True
+  roles:
+    - accelerate
+
+- hosts: production
+  sudo: true
+  accelerate: true
+  vars:
+    backup: true
+  roles:
+    - application
+    - nodejs
+    - mongodb
+    - gateway

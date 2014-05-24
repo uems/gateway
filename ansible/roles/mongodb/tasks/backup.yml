@@ -1,0 +1,33 @@
+---
+
+- name: ensure there is a backups directory
+  tags: backup
+  file: path=/var/backups
+        state=directory
+        mode=0755
+
+- name: ensure there is a directory gateway inside backups
+  tags: backup
+  file: path=/var/backups/gateway/
+        state=directory
+        mode=0755
+
+- name: Create script for database backup
+  tags:
+    - config
+    - backup
+  template: src=history_backuper.sh.j2
+            owner=root
+            mode=0755
+            dest=/usr/local/sbin/history_backuper.sh
+
+- name: adds database backup script to the cron every 10min
+  tags:
+    - config
+    - backup
+  cron: name='mongo history database periodic backup'
+        cron_file=gateway_backuper
+        minute="*/10"
+        user=root
+        hour=*
+        job="/usr/local/sbin/history_backuper.sh"

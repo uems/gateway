@@ -9,6 +9,7 @@ mongodump -db history -o $dirname
 tar -zcvf $filename $dirname
 cp $filename /var/backups/gateway/${filename}
 scp ${filename} {{ backup_host }}:/var/backups/gateway/${filename}
+rm -Rf $dirname
 
 
 # filename=transitions_${date}.gz
